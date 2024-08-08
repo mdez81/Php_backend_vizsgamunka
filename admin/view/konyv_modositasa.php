@@ -4,9 +4,9 @@ ob_start();
 ob_flush();
 if (!isset($_SESSION['f_id'])) {
     header('Location:../index.php');
-    /*if (isset($_SESSION['hiba'])) {
+    if (isset($_SESSION['hiba'])) {
     unset($_SESSION['hiba']);
-}*/
+}
 }
 ?>
 <!DOCTYPE html>

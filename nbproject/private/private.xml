@@ -5,14 +5,21 @@
         <group>
             <file>file:/C:/xampp/htdocs/Mutz_Dezso_backend_vizsgamunka/admin/view/kategoria_modositasa.php</file>
             <file>file:/C:/xampp/htdocs/Mutz_Dezso_backend_vizsgamunka/admin/classes/Kategoria.php</file>
-            <file>file:/C:/xampp/htdocs/Mutz_Dezso_backend_vizsgamunka/admin/view/konyvek.php</file>
             <file>file:/C:/xampp/htdocs/Mutz_Dezso_backend_vizsgamunka/admin/model/konyv_kep_modositasa.php</file>
-            <file>file:/C:/xampp/htdocs/Mutz_Dezso_backend_vizsgamunka/admin/model/konyv_modositasa.php</file>
             <file>file:/C:/xampp/htdocs/Mutz_Dezso_backend_vizsgamunka/admin/view/konyv_modositasa.php</file>
+            <file>file:/C:/xampp/htdocs/Mutz_Dezso_backend_vizsgamunka/admin/view/ujKategoria.php</file>
+            <file>file:/C:/xampp/htdocs/Mutz_Dezso_backend_vizsgamunka/admin/view/kolcsonzes.php</file>
+            <file>file:/C:/xampp/htdocs/Mutz_Dezso_backend_vizsgamunka/admin/model/ujKolcsonzes.php</file>
+            <file>file:/C:/xampp/htdocs/Mutz_Dezso_backend_vizsgamunka/admin/view/dashboard.php</file>
+            <file>file:/C:/xampp/htdocs/Mutz_Dezso_backend_vizsgamunka/admin/view/konyvek.php</file>
+            <file>file:/C:/xampp/htdocs/Mutz_Dezso_backend_vizsgamunka/admin/model/konyv_modositasa.php</file>
             <file>file:/C:/xampp/htdocs/Mutz_Dezso_backend_vizsgamunka/admin/model/konyv_hozzaadasa.php</file>
             <file>file:/C:/xampp/htdocs/Mutz_Dezso_backend_vizsgamunka/admin/view/ujKonyv.php</file>
             <file>file:/C:/xampp/htdocs/Mutz_Dezso_backend_vizsgamunka/admin/classes/Konyv.php</file>
+            <file>file:/C:/xampp/htdocs/Mutz_Dezso_backend_vizsgamunka/admin/model/kategoria_hozzaadas.php</file>
+            <file>file:/C:/xampp/htdocs/Mutz_Dezso_backend_vizsgamunka/admin/view/ujSzerzo.php</file>
             <file>file:/C:/xampp/htdocs/Mutz_Dezso_backend_vizsgamunka/admin/view/kep_modositas_form.php</file>
+            <file>file:/C:/xampp/htdocs/Mutz_Dezso_backend_vizsgamunka/admin/classes/Kolcsonzes.php</file>
         </group>
     </open-files>
 </project-private>
