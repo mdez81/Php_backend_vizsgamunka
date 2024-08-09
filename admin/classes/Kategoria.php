@@ -5,7 +5,6 @@ class Kategoria {
 
     private $kapcs;
     private $tablaNev = "kategoria";
-    public $kategoria_nev;
 
     public function __construct() {
         $adatbazis = new Adatbazis();

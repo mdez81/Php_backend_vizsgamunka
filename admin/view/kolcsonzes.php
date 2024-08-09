@@ -135,13 +135,13 @@ if (isset($_SESSION['hiba'])) {
                                                                                 $hibaUzenetIsbnBe = "";
                                                                                 require '../model/ujKolcsonzes.php';
                                                                                 ?>
-                                                                                <form method="post" >
+                                                                                <form  method="post">
                                                                                     <div class="form-group">
                                                                                         <input id="felh_id" name="felh_id" type="text" placeholder="felhasználó azonosító" class="form-control ">
                                                                                         <span class="text-danger"><?php echo $hibaUzenetFId; ?></span>
                                                                                     </div>
                                                                                     <div class="form-group">
-                                                                                        <input id="isbn_be" name="isbn_be" type="text" placeholder="ISBN" class="form-control ">
+                                                                                        <input id="isbn_be" name="isbn_be" type="text" placeholder="ISBN" maxlength="13" class="form-control ">
                                                                                         <span class="text-danger"><?php echo $hibaUzenetIsbnBe; ?></span>
                                                                                     </div>
                                                                                     <button type="submit" class="btn btn-green" name="ujszerzo">Mentés</button>&nbsp;
