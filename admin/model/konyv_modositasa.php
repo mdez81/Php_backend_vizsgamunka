@@ -1,7 +1,4 @@
 <?php
-/*ob_start();
-ob_flush();*/
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cim = filter_var($_POST['cim'], FILTER_SANITIZE_SPECIAL_CHARS);
     $katalogus_id = $_POST['kategoriaLista'];
@@ -19,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //$fenykep = filter_var($_FILES['kep']['name'], FILTER_SANITIZE_SPECIAL_CHARS);
     
     $result = $konyvek->konyvModositasa($id, $cim, $katalogus_id, $szerzo_id, $isbn);
-    $konyvek->kapcsolatBont();
+    
     if ($result) {
         
         header("Location:../view/konyvek.php");
@@ -28,5 +25,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         error_log($mysqli->error, 3, './error.log');
         //echo "Error updating record: " . $db->conn->error;
     }
+    //$konyvek->kapcsolatBont();
     //$szerzo->kapcsBontasa();
 }

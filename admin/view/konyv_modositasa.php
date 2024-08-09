@@ -1,13 +1,13 @@
 <?php
 session_start();
-ob_start();
-ob_flush();
+/*ob_start();
+ob_flush();*/
 if (!isset($_SESSION['f_id'])) {
     header('Location:../index.php');
-    if (isset($_SESSION['hiba'])) {
+}
+ /*if (isset($_SESSION['hiba'])) {
     unset($_SESSION['hiba']);
-}
-}
+}*/
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -125,7 +125,7 @@ if (!isset($_SESSION['f_id'])) {
                                                     $k_id = (int) $_GET['id'];
                                                     $adatok = $konyv->osszesKonyvId($k_id);
                                                     ?>
-                                                    <form action="../model/konyv_modositasa.php"  method="post" >
+                                                    <form action="../model/konyv_modositasa.php?id=<?php echo $k_id; ?>"  method="post" >
                                                         <div class="form-body pal">
 
                                                             <div class="row">
