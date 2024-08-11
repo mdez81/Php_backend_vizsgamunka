@@ -2,24 +2,23 @@
 session_start();
 if (!isset($_SESSION['f_id'])) {
     header('Location:../index.php');
-    /*if (isset($_SESSION['hiba'])) {
-    unset($_SESSION['hiba']);
-}*/
 }
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
     <head>
-        <title>könyv kép módosítása</title>
+        <title>Books | List</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="../images/icons/favicon.ico">
-        <link href="../assets/vendor.9141013d9d5ef137660f.css" rel="stylesheet"></head>
+        <link href="../assets/vendor.9141013d9d5ef137660f.css" rel="stylesheet">
+    </head>
+
 
     <body>
-        <div>
+        <div >
             <!--BEGIN BACK TO TOP-->
             <a id="totop" href="#"><i class="fa fa-angle-up"></i></a>
             <!--END BACK TO TOP-->
@@ -43,7 +42,7 @@ if (!isset($_SESSION['f_id'])) {
                                     <li><a href="profile.html"><i class="fa fa-user"></i>My Profile</a></li>
                                     <li><a href="#"><i class="fa fa-tasks"></i>My Books</a></li>
                                     <li class="divider"></li>
-                                    <li><a href="../logot.php"><i class="fa fa-sign-out"></i>Log Out</a></li>
+                                    <li><a href="../logout.php"><i class="fa fa-sign-out"></i>Log Out</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -52,7 +51,7 @@ if (!isset($_SESSION['f_id'])) {
 
             </div>
             <!--END TOPBAR-->
-            <div id="wrapper">
+            <div id="wrapper" >
                 <!--BEGIN SIDEBAR MENU-->
                 <nav id="sidebar" role="navigation" data-step="2" data-intro="Template has &lt;b&gt;many navigation styles&lt;/b&gt;" data-position="right"
                      class="navbar-default navbar-static-side">
@@ -84,15 +83,16 @@ if (!isset($_SESSION['f_id'])) {
                                         <div class="icon-bg bg-blue"></div>
                                     </i><span class="menu-title">Profile</span></a>
                             </li>
+
                         </ul>
                     </div>
                 </nav>
-                <div id="page-wrapper">
+                <div id="page-wrapper" >
                     <!--BEGIN TITLE & BREADCRUMB PAGE-->
                     <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
                         <div class="page-header pull-left">
                             <div class="page-title">
-                                Kép módosítása</div>
+                                Book List</div>
                         </div>
                         <ol class="breadcrumb page-breadcrumb pull-right">
                             <li><i class="fa fa-home"></i>&nbsp;<a href="dashboard.html">Home</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
@@ -104,51 +104,49 @@ if (!isset($_SESSION['f_id'])) {
                     </div>
                     <!--END TITLE & BREADCRUMB PAGE-->
                     <!--BEGIN CONTENT-->
-                    <div class="page-content">
-                        <div id="tab-general">
-                            <div class="row mbl">
-                                <div class="col-lg-12">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <div class="panel panel-green">
-                                                <div class="panel-heading">
-                                                    könyv fénykép módosítás</div>
-                                                <div class="panel-body pan">
-                                                    <?php
-                                                    require '../classes/Konyv.php';
+                    <div class="page-content" >
 
-                                                    $konyv = new Konyv();
 
-                                                    $k_id_2 = $_GET['id'];
-                                                    $adatok = $konyv->osszesKonyvId($k_id_2);
-                                                    ?>
-                                                    <form action="../model/konyv_kep_modositasa.php?id=<?php echo $k_id_2?>"  method="post" enctype="multipart/form-data">
-                                                        <div class="form-body pal">
-                                                            <div class="form-group">
-                                                                <div class="text-center mbl"><img src="../konyvek/<?php echo $adatok['fenykep'] ?>" alt="kony fényképe"  style="width:100px;"></div>
-                                                                <div class="mbl my-2">
-                                                                    <input type="file" name="kep_m"  class="form-control">
-                                                                </div>
-                                                                <div class="mbl my-2">
-                                                                    <button type="submit" class="btn btn-green">Feltölt</button>
-                                                                </div>
-                                                                <!--<span class="text-danger"><?php echo $hibaUzenetKep; ?></span>-->
-                                                            </div>
-                                                        </div>
-                                                    </form>
 
-                                                </div>
-                                            </div>
+                        <div class="col-lg-12" >
 
-                                        </div>
-                                    </div>
+                            <div>
+                                <a href="ujKonyv.php" class="btn btn-primary" data-hover="tooltip" data-original-title="New"><i class="fa fa-plus"></i>&nbsp; Új könyv</a>
+                                <!--<button type="button" class="btn btn-primary" data-hover="tooltip" data-original-title="New"><i class="fa fa-plus"></i>&nbsp; New Book</button>-->
+                            </div>
+
+                            <br/>
+
+                            <div class="panel panel-green" >
+                                <div class="panel-heading">Books</div>
+                                <div class="panel-body" >
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th style="width:20%;">Action</th>
+                                                <th>Kolcsönző neve</th>
+                                                <th>Könyv címe</th>
+                                                <th>ISBN</th>
+                                                <th>Kölcsönzés dátuma</th>
+                                                 <th>visszavétel dátuma</th>
+                                            </tr>
+                                        </thead>
+                                       
+                                            <?php
+                                            require '../classes/Kolcsonzes.php';
+                                            $olcsonzesek = new Kolcsonzes();
+                                            $olcsonzesek->osszeskolcsonzes_felhasznaloval();
+                                            ?>
+                                      
+                                    </table>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                     <!--END CONTENT-->
                     <!--BEGIN FOOTER-->
-                    <div id="footer">
+                    <div id="footer" >
                         <div class="copyright">
                             Copyright 2017</div>
                     </div>
@@ -160,5 +158,4 @@ if (!isset($_SESSION['f_id'])) {
         <script type="text/javascript" src="../assets/vendor.b4b0165630c3cba86c74.js"></script><script type="text/javascript" src="./app.a5e8deedc708df27bfde.js"></script></body>
 
 </html>
-
 

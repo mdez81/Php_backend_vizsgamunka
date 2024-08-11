@@ -1,5 +1,4 @@
 <?php
-
 require '../config/Adatbazis.php';
 
 class Kolcsonzes {
@@ -100,7 +99,7 @@ class Kolcsonzes {
         $stmt = $this->kapcs->prepare($query_kolcs);
         $stmt->bind_param("ii", $felh_id_ab, $konyv_id_ab);
         //$this->kapcs->close();
-        
+
         if ($stmt->execute()) {
 
             $query_kolcs_2 = "UPDATE konyvek SET kolcsonozve_vane = 1 WHERE id = ?";
@@ -111,21 +110,49 @@ class Kolcsonzes {
                 $stmt_2->close();
                 return true;
             } else {
-               
+
                 $stmt_2->close();
-                 return false;
+                return false;
             }
 
 
-            
-            
 
-            
+
+
+
             $stmt->close();
             return false;
-            
         }
+    }
 
-        /**/
+    public function osszeskolcsonzes_felhasznaloval() {
+        $sql = "SELECT felhasznalok.nev, konyvek.cim, konyvek.isbn, kolcsonzes.kolcsonzes_datuma, kolcsonzes.visszavetel_datuma, kolcsonzes.id AS kol_id from kolcsonzes JOIN felhasznalok ON felhasznalok.id = kolcsonzes.felhasznalo_id JOIN konyvek ON konyvek.id = kolcsonzes.konyv_id ORDER BY kolcsonzes.id DESC";
+        $result = $this->kapcs->query($sql);
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                ?> 
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="kolcsonzes_modositasa.php?id=<?php echo $row['id']; ?>" class="btn btn-primary btn-sm"  title="módosítás"><i class="fa fa-pencil"></i></a>
+
+                        </td>
+                        <td><?php echo $row['nev']; ?></td>
+                        <td><?php echo $row['cim']; ?></td>
+                        <td><?php echo $row['isbn']; ?></td>
+                        <td><?php echo $row['kolcsonzes_datuma']; ?></td>
+                        <td> <?php if ($row['visszavetel_datuma'] === NULL) {
+                            echo "not returned yet";
+                            } else {
+                                echo $row['visszavetel_datuma'];
+                            }
+                            ?></td>
+                    </tr>
+                </tbody>
+                <?php
+            }
+        }
+        $this->kapcs->close();
     }
 }

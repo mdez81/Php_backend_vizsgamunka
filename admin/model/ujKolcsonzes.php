@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             //$konyv_id = $kolcsonzes->getKonyvId();
             
             $kolcsonzes->ujKolcsonzes($felh_id, $isbn);
-            header('Location:../view/kategoria.php');
+            header('Location:../view/kolcsonzesek.php');
         } else {
             $_SESSION['hiba'] = "Nem létező felhasználó azonosító és vagy id!";
         }
