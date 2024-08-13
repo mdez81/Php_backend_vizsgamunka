@@ -114,15 +114,18 @@ class Kolcsonzes {
                 $stmt_2->close();
                 return false;
             }
-
-
-
-
-
-
             $stmt->close();
             return false;
         }
+    }
+    
+    public function osszesKolcsonzesId($id) {
+        $stmt = $this->kapcs->prepare("SELECT id, konyv_id, felhasznalo_id, kolcsonzes_datuma, visszavetel_datuma, visszahozva_vane, birsag FROM kolcsonzes WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_assoc();
     }
 
     public function osszeskolcsonzes_felhasznaloval() {
@@ -135,7 +138,7 @@ class Kolcsonzes {
                 <tbody>
                     <tr>
                         <td>
-                            <a href="kolcsonzes_modositasa.php?id=<?php echo $row['id']; ?>" class="btn btn-primary btn-sm"  title="módosítás"><i class="fa fa-pencil"></i></a>
+                            <a href="kolcsonzes_reszletei.php?id=<?php echo $row['kol_id']; ?>" class="btn btn-primary btn-sm"  title="módosítás"><i class="fa fa-pencil"></i></a>
 
                         </td>
                         <td><?php echo $row['nev']; ?></td>
@@ -154,5 +157,56 @@ class Kolcsonzes {
             }
         }
         $this->kapcs->close();
+    }
+    
+    
+    public function osszeskolcsonzes_felhasznalo_osszes_adat($kolcs_id) {
+        $sql = "SELECT felhasznalok.felhasznalo_id, felhasznalok.nev, felhasznalok.email_cim, felhasznalok.telefonszam, konyvek.cim, konyvek.isbn, kolcsonzes.kolcsonzes_datuma, kolcsonzes.visszavetel_datuma, kolcsonzes.id AS kol_id,
+                kolcsonzes.birsag, kolcsonzes.visszahozva_vane, konyvek.id AS k_id, konyvek.fenykep
+                from kolcsonzes JOIN felhasznalok ON felhasznalok.id = kolcsonzes.felhasznalo_id JOIN konyvek ON konyvek.id = kolcsonzes.konyv_id WHERE kolcsonzes.id =".$kolcs_id;
+            $results = $this->kapcs->query($sql);
+
+        if ($results->num_rows > 0) {
+            /*while ($row = $result->fetch_assoc()) {
+                ?> 
+                <tbody>
+                    <tr>
+                         <td><?php echo $row['felhasznalo_id']; ?></td>
+                        <td><?php echo $row['nev']; ?></td>
+                    </tr>
+                    
+                    
+                </tbody>
+                <?php
+            }*/
+            
+         foreach ($results as $result) {
+             //echo $result['email_cim'];
+         }
+        }
+        $this->kapcs->close();
+    }
+    
+    public function kolcsonzesModositasa($id, $birsag,$ko_id) {
+        $stmt = $this->kapcs->prepare("UPDATE ".$this->tablaNev." SET birsag = ?, visszahozva_vane = 1 WHERE id = ?");
+        $stmt->bind_param("ii", $birsag,  $id);
+        //return $stmt->execute();
+            if ($stmt->execute()) {
+
+            $query_kolcs_2 = "UPDATE konyvek SET kolcsonozve_vane = 0 WHERE id = ?";
+            $stmt_2 = $this->kapcs->prepare($query_kolcs_2);
+            $stmt_2->bind_param("i", $ko_id);
+
+            if ($stmt_2->execute()) {
+                $stmt_2->close();
+                return true;
+            } else {
+
+                $stmt_2->close();
+                return false;
+            }
+            $stmt->close();
+            return false;
+        }
     }
 }

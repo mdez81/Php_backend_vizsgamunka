@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2024. Aug 07. 18:30
+-- Létrehozás ideje: 2024. Aug 13. 10:18
 -- Kiszolgáló verziója: 8.4.0
 -- PHP verzió: 8.2.12
 
@@ -20,7 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Adatbázis: `konyvtar_app`
 --
-
+CREATE DATABASE IF NOT EXISTS `konyvtar_app`;
 -- --------------------------------------------------------
 
 --
@@ -74,7 +74,7 @@ INSERT INTO `kategoria` (`id`, `kategoria_neve`, `statusz`, `letrehozas_datuma`,
 (6, 'Science', 1, '2024-01-31 06:23:03', '2024-02-04 05:33:51'),
 (7, 'Management', 1, '2024-01-31 06:23:03', '2024-02-04 05:33:51'),
 (8, 'General', 1, '2024-01-31 06:23:03', '2024-02-04 05:33:51'),
-(9, 'Programming', 1, '2024-01-31 06:23:03', '2024-02-04 05:33:51');
+(9, 'Programming tech', 1, '2024-01-31 06:23:03', '2024-08-08 12:17:02');
 
 -- --------------------------------------------------------
 
@@ -87,7 +87,7 @@ CREATE TABLE `kolcsonzes` (
   `konyv_id` int NOT NULL,
   `felhasznalo_id` int NOT NULL,
   `kolcsonzes_datuma` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `lejarat_datuma` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `visszavetel_datuma` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `visszahozva_vane` int NOT NULL,
   `birsag` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
@@ -96,8 +96,12 @@ CREATE TABLE `kolcsonzes` (
 -- A tábla adatainak kiíratása `kolcsonzes`
 --
 
-INSERT INTO `kolcsonzes` (`id`, `konyv_id`, `felhasznalo_id`, `kolcsonzes_datuma`, `lejarat_datuma`, `visszahozva_vane`, `birsag`) VALUES
-(1, 5, 1, '2024-07-09 11:42:35', '2024-08-07 12:09:38', 0, 0);
+INSERT INTO `kolcsonzes` (`id`, `konyv_id`, `felhasznalo_id`, `kolcsonzes_datuma`, `visszavetel_datuma`, `visszahozva_vane`, `birsag`) VALUES
+(16, 9, 58, '2024-08-11 12:00:58', '2024-08-13 08:16:40', 1, 0),
+(19, 9, 22, '2024-08-11 12:27:08', NULL, 0, NULL),
+(20, 5, 23, '2024-08-11 12:35:46', NULL, 0, NULL),
+(21, 9, 58, '2024-08-12 07:48:20', NULL, 0, NULL),
+(22, 9, 1, '2024-08-12 10:35:00', NULL, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -111,7 +115,6 @@ CREATE TABLE `konyvek` (
   `katalogus_id` int NOT NULL,
   `szerzo_id` int NOT NULL,
   `isbn` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_hungarian_ci NOT NULL,
-  `ar` double NOT NULL,
   `fenykep` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_hungarian_ci NOT NULL,
   `kolcsonozve_vane` int NOT NULL DEFAULT '0',
   `letrehozas_datuma` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -122,16 +125,18 @@ CREATE TABLE `konyvek` (
 -- A tábla adatainak kiíratása `konyvek`
 --
 
-INSERT INTO `konyvek` (`id`, `cim`, `katalogus_id`, `szerzo_id`, `isbn`, `ar`, `fenykep`, `kolcsonozve_vane`, `letrehozas_datuma`, `modositas_datuma`) VALUES
-(1, 'PHP And MySql programming', 5, 1, '222333', 20, '1efecc0ca822e40b7b673c0d79ae943f.jpg', 1, '2024-01-30 06:23:03', '2024-02-04 05:34:02'),
-(3, 'physics', 6, 4, '1111', 15, 'dd8267b57e0e4feee5911cb1e1a03a79.jpg', 0, '2024-01-30 06:23:03', '2024-02-04 05:34:11'),
-(5, 'Murach\'s MySQL', 5, 1, '9350237695', 455, '5939d64655b4d2ae443830d73abc35b6.jpg', 1, '2024-01-30 06:23:03', '2024-02-04 05:34:11'),
-(6, 'WordPress for Beginners 2022: A Visual Step-by-Step Guide to Mastering WordPress', 5, 10, 'B019MO3WCM', 100, '144ab706ba1cb9f6c23fd6ae9c0502b3.jpg', 0, '2024-01-30 06:23:03', '2024-02-04 05:34:11'),
-(7, 'WordPress Mastery Guide:', 5, 11, 'B09NKWH7NP', 53, '90083a56014186e88ffca10286172e64.jpg', 0, '2024-01-30 06:23:03', '2024-02-04 05:34:11'),
-(8, 'Rich Dad Poor Dad: What the Rich Teach Their Kids About Money That the Poor and Middle Class Do Not', 8, 12, 'B07C7M8SX9', 120, '52411b2bd2a6b2e0df3eb10943a5b640.jpg', 0, '2024-01-30 06:23:03', '2024-02-04 05:34:11'),
-(9, 'The Girl Who Drank the Moon', 8, 13, '1848126476', 200, 'f05cd198ac9335245e1fdffa793207a7.jpg', 0, '2024-01-30 06:23:03', '2024-02-04 05:34:11'),
-(10, 'C++: The Complete Reference, 4th Edition', 5, 14, '007053246X', 142, '36af5de9012bf8c804e499dc3c3b33a5.jpg', 0, '2024-01-30 06:23:03', '2024-02-04 05:34:11'),
-(11, 'ASP.NET Core 5 for Beginners', 9, 11, 'GBSJ36344563', 422, 'b1b6788016bbfab12cfd2722604badc9.jpg', 0, '2024-01-30 06:23:03', '2024-02-04 05:34:11');
+INSERT INTO `konyvek` (`id`, `cim`, `katalogus_id`, `szerzo_id`, `isbn`, `fenykep`, `kolcsonozve_vane`, `letrehozas_datuma`, `modositas_datuma`) VALUES
+(1, 'Php  reference', 6, 2, '2223330000000', '1efecc0ca822e40b7b673c0d79ae943f.jpg', 1, '2024-01-30 06:23:03', '2024-08-09 08:03:09'),
+(3, 'physics', 6, 4, '1111', 'dd8267b57e0e4feee5911cb1e1a03a79.jpg', 0, '2024-01-30 06:23:03', '2024-08-13 08:13:42'),
+(5, 'Murach\'s MySQL', 5, 1, '9350237695', '5939d64655b4d2ae443830d73abc35b6.jpg', 1, '2024-01-30 06:23:03', '2024-02-04 05:34:11'),
+(6, 'WordPress for Beginners 2022: A Visual Step-by-Step Guide to Mastering WordPress', 5, 10, 'B019MO3WCM', '144ab706ba1cb9f6c23fd6ae9c0502b3.jpg', 0, '2024-01-30 06:23:03', '2024-02-04 05:34:11'),
+(7, 'WordPress Mastery Guide:', 5, 11, 'B09NKWH7NP', '90083a56014186e88ffca10286172e64.jpg', 0, '2024-01-30 06:23:03', '2024-02-04 05:34:11'),
+(8, 'Rich Dad Poor Dad: What the Rich Teach Their Kids About Money That the Poor and Middle Class Do Not', 8, 12, 'B07C7M8SX9', '52411b2bd2a6b2e0df3eb10943a5b640.jpg', 0, '2024-01-30 06:23:03', '2024-02-04 05:34:11'),
+(9, 'The Girl Who Drank the Moon', 8, 13, '1848126476', 'f05cd198ac9335245e1fdffa793207a7.jpg', 0, '2024-01-30 06:23:03', '2024-08-13 08:16:40'),
+(10, 'C++: The Complete Reference, 4th Edition', 5, 14, '007053246X', '36af5de9012bf8c804e499dc3c3b33a5.jpg', 0, '2024-01-30 06:23:03', '2024-02-04 05:34:11'),
+(11, 'ASP.NET Core 5 for Beginners', 9, 11, 'GBSJ36344563', 'b1b6788016bbfab12cfd2722604badc9.jpg', 0, '2024-01-30 06:23:03', '2024-02-04 05:34:11'),
+(41, 'Effective Java', 9, 2, '2223330000001', '36578715o.jpg', 0, '2024-08-08 11:37:07', '2024-08-13 08:13:19'),
+(42, 'Php pocket reference', 9, 10, '0123457891011', 'php-pocket-reference.jpg', 0, '2024-08-08 12:18:10', '2024-08-08 12:18:10');
 
 -- --------------------------------------------------------
 
@@ -183,7 +188,10 @@ INSERT INTO `szerzok` (`id`, `szerzo_neve`, `letrehozas_datuma`, `modositas_datu
 (11, 'Kyle Hill', '2024-01-25 06:23:03', '2024-02-04 05:34:26'),
 (12, 'Robert T. Kiyosak', '2024-01-25 06:23:03', '2024-02-04 05:34:26'),
 (13, 'Kelly Barnhill', '2024-01-25 06:23:03', '2024-02-04 05:34:26'),
-(14, 'Herbert Schildt', '2024-01-25 06:23:03', '2024-02-04 05:34:26');
+(14, 'Herbert Schildt', '2024-01-25 06:23:03', '2024-02-04 05:34:26'),
+(48, 'Damy Moor', '2024-08-08 12:15:27', '2024-08-08 12:15:27'),
+(49, 'Dany haily', '2024-08-08 12:15:49', '2024-08-08 12:15:49'),
+(50, 'Dany haily', '2024-08-08 12:16:02', '2024-08-08 12:16:02');
 
 --
 -- Indexek a kiírt táblákhoz
@@ -252,13 +260,13 @@ ALTER TABLE `kategoria`
 -- AUTO_INCREMENT a táblához `kolcsonzes`
 --
 ALTER TABLE `kolcsonzes`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT a táblához `konyvek`
 --
 ALTER TABLE `konyvek`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT a táblához `rendszer_felhasznalok`
@@ -270,7 +278,7 @@ ALTER TABLE `rendszer_felhasznalok`
 -- AUTO_INCREMENT a táblához `szerzok`
 --
 ALTER TABLE `szerzok`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- Megkötések a kiírt táblákhoz

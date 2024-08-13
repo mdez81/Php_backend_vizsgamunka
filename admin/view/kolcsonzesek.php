@@ -110,12 +110,7 @@ if (!isset($_SESSION['f_id'])) {
 
                         <div class="col-lg-12" >
 
-                            <div>
-                                <a href="ujKonyv.php" class="btn btn-primary" data-hover="tooltip" data-original-title="New"><i class="fa fa-plus"></i>&nbsp; Új könyv</a>
-                                <!--<button type="button" class="btn btn-primary" data-hover="tooltip" data-original-title="New"><i class="fa fa-plus"></i>&nbsp; New Book</button>-->
-                            </div>
-
-                            <br/>
+                           
 
                             <div class="panel panel-green" >
                                 <div class="panel-heading">Books</div>
@@ -135,10 +130,20 @@ if (!isset($_SESSION['f_id'])) {
                                             <?php
                                             require '../classes/Kolcsonzes.php';
                                             $olcsonzesek = new Kolcsonzes();
-                                            $olcsonzesek->osszeskolcsonzes_felhasznaloval();
+                                            //$kolcs_id = (int) $_GET['id'];
+                                            $adatok = $olcsonzesek->osszeskolcsonzes_felhasznaloval();
                                             ?>
+                                            
+                                            
                                       
                                     </table>
+                                    
+                                    
+                                    
+                                                 
+                                    
+                                    
+                                    
                                 </div>
                             </div>
 
