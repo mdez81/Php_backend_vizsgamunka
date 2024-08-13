@@ -1,3 +1,0 @@
-belépés
-admin /admin admin@gmail.com - Password@123
-normál felhasználó teszt@gmail.com  - Password@123

@@ -1,0 +1,25 @@
+belépés
+admin:  /admin admin@gmail.com - Password@123
+normál felhasználó:  teszt@gmail.com  - Password@123
+
+Könyvtár kezelő web alkalmazás
+A könyvtár felhasználóinak, könyvek és a kölcsönzések adatainak kezelése.
+
+a nyitó lapon megjelennek a könyvek adatai
+
+adminisztrátor
+belépés után
+	könyvek adatainak megtekintése
+	új kategória felvitele, módosítása vagy törlése
+	új szerző felvitele, módosítása vagy törlése
+	új könyv felvitele, módosítása vagy törlése
+	új kölcsönzés felvitele
+	visszavétel rögzítése a kölcsönzés adatainak módosításával
+
+normál felhasználó
+	regisztráció során egyéni azónosító számot kap, amely 100-al kezdődik és a következő személy  regisztrációnál egyel 	növekszik
+	 belépés után megtekintheti a kiadott könyvet és a könyv visszaküldésének dátumát és idejét. (továbbfejlesztési lehetőség)
+	
+
+
+
