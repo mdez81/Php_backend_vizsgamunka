@@ -78,6 +78,16 @@ if (isset($_SESSION['hiba'])) {
                                     </i><span class="menu-title">Authors</span></a>
                             </li>
                             
+                            <li><a href="../view/kolcsonzes.php"><i class="fa fa-cog fa-fw">
+                                        <div class="icon-bg bg-blue"></div>
+                                    </i><span class="menu-title"> new Issue</span></a>
+                            </li>
+
+                            <li><a href="../view/kolcsonzesek.php"><i class="fa fa-cog fa-fw">
+                                        <div class="icon-bg bg-blue"></div>
+                                    </i><span class="menu-title">all Issue</span></a>
+                            </li>
+                            
                               <li><a href="kategoria.php"><i class="fa fa-cog fa-fw">
                         <div class="icon-bg bg-blue"></div>
                     </i><span class="menu-title">kategória</span></a>

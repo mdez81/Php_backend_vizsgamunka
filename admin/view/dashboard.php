@@ -36,7 +36,7 @@ if (!isset($_SESSION['f_id'])) {
 
                         <ul class="nav navbar navbar-top-links navbar-right mbn">
 
-                            <li class="dropdown topbar-user"><a data-hover="dropdown" href="#" class="dropdown-toggle"><img src="../images/avatar/48.jpg" alt="" class="img-responsive img-circle"/>&nbsp;<span class="hidden-xs"><?= "Üdv ". $_SESSION['f_fnev']?></span>&nbsp;<span class="caret"></span></a>
+                            <li class="dropdown topbar-user"><a data-hover="dropdown" href="#" class="dropdown-toggle"><img src="../images/avatar/48.jpg" alt="" class="img-responsive img-circle"/>&nbsp;<span class="hidden-xs"><?= "Üdv " . $_SESSION['f_fnev'] ?></span>&nbsp;<span class="caret"></span></a>
                                 <ul class="dropdown-menu dropdown-user pull-right">
                                     <li><a href="profile.html"><i class="fa fa-user"></i>Profil</a></li>
                                     <li><a href="#"><i class="fa fa-tasks"></i>My Books</a></li>
@@ -72,20 +72,25 @@ if (!isset($_SESSION['f_id'])) {
                                         <div class="icon-bg bg-violet"></div>
                                     </i><span class="menu-title">Authors</span></a>
                             </li>
-                            
-                              <li><a href="kategoria.php"><i class="fa fa-cog fa-fw">
-                        <div class="icon-bg bg-blue"></div>
-                    </i><span class="menu-title">kategória</span></a>
-                        </li>
+
+                            <li><a href="kategoria.php"><i class="fa fa-cog fa-fw">
+                                        <div class="icon-bg bg-blue"></div>
+                                    </i><span class="menu-title">kategória</span></a>
+                            </li>
 
                             <li><a href="#"><i class="fa fa-cog fa-fw">
                                         <div class="icon-bg bg-blue"></div>
                                     </i><span class="menu-title">Profile</span></a>
                             </li>
-                            
+
                             <li><a href="../view/kolcsonzes.php"><i class="fa fa-cog fa-fw">
                                         <div class="icon-bg bg-blue"></div>
-                                    </i><span class="menu-title">Issue</span></a>
+                                    </i><span class="menu-title"> new Issue</span></a>
+                            </li>
+
+                            <li><a href="../view/kolcsonzesek.php"><i class="fa fa-cog fa-fw">
+                                        <div class="icon-bg bg-blue"></div>
+                                    </i><span class="menu-title">all Issue</span></a>
                             </li>
 
                         </ul>

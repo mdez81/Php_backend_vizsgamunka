@@ -20,7 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Adatbázis: `konyvtar_app`
 --
-CREATE DATABASE IF NOT EXISTS `konyvtar_app`;
 -- --------------------------------------------------------
 
 --
